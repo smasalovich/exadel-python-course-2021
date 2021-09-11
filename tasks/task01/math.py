@@ -1,6 +1,6 @@
 number = 1000
 
-while number > 0:
+for  number in range(1, 1001):
     copy_number = number
     symbol_count = 0
     while copy_number >0:
@@ -15,4 +15,3 @@ while number > 0:
         check_number = check_number + digit**symbol_count
     if check_number == number:
         print(number)
-    number -= 1
