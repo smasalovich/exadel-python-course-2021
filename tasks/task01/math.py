@@ -1,5 +1,3 @@
-number = 1000
-
 for  number in range(1, 1001):
     copy_number = number
     symbol_count = 0
