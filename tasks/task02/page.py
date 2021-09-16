@@ -22,37 +22,28 @@ while(True):
         print('Wrong input. Please enter a number ...')
 
     if option == 1:
-        parameters = (input('Enter base and height: '))
-        parameters_list = parameters.split()
-        map_parameters = map(int, parameters_list) 
-        parameters_intager = list(map_parameters)    
-        if len(parameters_intager) == 2:
-            area =  0.5*parameters_intager[0]*parameters_intager[1]
-            print ('Area is:', area)
-            print()
-            print()
-        else:
-            print()
-            print()
-            print ('WRONG NUMBERS OF PARAMETERTS')
-            print()
-            print()
+        try:
+            parameters = (input('Enter base and height: '))
+            parameters_list = parameters.split()
+            if len(parameters_list) == 2:
+                print (f'Area is:  {0.5*float(parameters_list[0])*float(parameters_list[1])} \n\n')
+            else:
+                print ('\n\n WRONG NUMBERS OF PARAMETERTS \n\n')
+        except:
+            print('\n\n Wrong input. \n\n ')
+            continue
     elif option == 2:
-        parameters = input('Enter 2 sides and angle(degrees) between them: ')
-        parameters_list = parameters.split()
-        map_parameters = map(int, parameters_list) 
-        parameters_intager = list(map_parameters)
-        if len(parameters_intager) == 3:
-            area =  0.5*parameters_intager[0]*parameters_intager[1]*math.sin(math.radians(parameters_intager[2]))
-            print ('Area is:', area)
-            print()
-            print()
-        else:
-            print()
-            print()
-            print ('WRONG NUMBERS OF PARAMETERTS')
-            print()
-            print()
+        try:
+            parameters = input('Enter 2 sides and angle(degrees) between them: ')
+            parameters_list = parameters.split()
+            if (len(parameters_list) == 3) and (0 < float(parameters_list[2]) < 180):
+                area =  0.5*float(parameters_list[0])*float(parameters_list[1])*math.sin(math.radians(float(parameters_list[2])))
+                print (f'Area is: {0.5*float(parameters_list[0])*float(parameters_list[1])*math.sin(math.radians(float(parameters_list[2])))}\n\n')
+            else:
+                print ('\n\nWRONG NUMBERS OF PARAMETERTS OR WRONG DEGREASE\n\n')
+        except:
+            print('\n\n Wrong input.\n\n ')
+            continue
     elif option == 3:
         print ('Goodbye!')
         exit()
