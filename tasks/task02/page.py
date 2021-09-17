@@ -25,10 +25,13 @@ while(True):
         try:
             parameters = (input('Enter base and height: '))
             parameters_list = parameters.split()
-            if len(parameters_list) == 2:
-                print (f'Area is:  {0.5*float(parameters_list[0])*float(parameters_list[1])} \n\n')
+            base = float(parameters_list[0])
+            height = float(parameters_list[1])
+            squere = 0.5*base*height
+            if (len(parameters_list) == 2) and (squere > 0):
+                print (f'Area is:  {squere:.2f} \n\n')
             else:
-                print ('\n\n WRONG NUMBERS OF PARAMETERTS \n\n')
+                print ('\n\n WRONG PARAMETERTS \n\n')
         except:
             print('\n\n Wrong input. \n\n ')
             continue
@@ -36,11 +39,14 @@ while(True):
         try:
             parameters = input('Enter 2 sides and angle(degrees) between them: ')
             parameters_list = parameters.split()
-            if (len(parameters_list) == 3) and (0 < float(parameters_list[2]) < 180):
-                area =  0.5*float(parameters_list[0])*float(parameters_list[1])*math.sin(math.radians(float(parameters_list[2])))
-                print (f'Area is: {0.5*float(parameters_list[0])*float(parameters_list[1])*math.sin(math.radians(float(parameters_list[2])))}\n\n')
+            first_side = float(parameters_list[0])
+            second_side = float(parameters_list[1])
+            angle_sinus = math.sin(math.radians(float(parameters_list[2])))
+            squere = 0.5*first_side*second_side*angle_sinus
+            if (len(parameters_list) == 3) and ( 0 < float(parameters_list[2]) < 180 ) and ( squere >0 ) :
+                print (f'Area is:  {squere:.2f} \n\n')
             else:
-                print ('\n\nWRONG NUMBERS OF PARAMETERTS OR WRONG DEGREASE\n\n')
+                print ('\n\nWRONG PARAMETERTS\n\n')
         except:
             print('\n\n Wrong input.\n\n ')
             continue
