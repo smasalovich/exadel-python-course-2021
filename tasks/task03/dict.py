@@ -8,20 +8,18 @@ string_list = [
 words_list = [{'word':'word', 'count':'count', 'first_line':'first line'}]
 check_list = []
 
-for sting_number in range(0, len(string_list)):
-    string = string_list[sting_number].split()
-    print(string)
-    for unit_number in range(0, len(string)):
-        string[unit_number] = ''.join(x for x in string[unit_number] if x.isalpha())
-        string[unit_number] = string[unit_number].lower()
-        print (string[unit_number])
-        if string[unit_number] in check_list:
-            for word_number in range (0, len(words_list)-1):
-                if string[unit_number] == words_list[word_number]['word']:
-                    words_list[word_number]['count'] +=1
+for sting_number, value in enumerate(string_list):
+    string = value.split()
+    for unit_number, string_value in enumerate(string):
+        string_value = re.sub('[^A-Za-z0-9]+', '', string_value)
+        string_value = string_value.lower()
+        if string_value in check_list:
+            for word_number, word in enumerate(words_list):
+                if string_value == word['word']:
+                    word['count'] +=1
         else:
-            check_list.append(string[unit_number])
-            words_list.append({'word':string[unit_number], 'count':1, 'first_line':sting_number})
+            check_list.append(string_value)
+            words_list.append({'word':string_value, 'count':1, 'first_line':sting_number})
 
-for item in range(0, len(words_list)):
-    print (list(words_list[item].values()))
+for  number, item in enumerate(words_list):
+    print (list(item.values()))
