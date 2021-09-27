@@ -11,16 +11,12 @@ tree = {
 
 def list_count(test, result=[]):
 
-    assert (isinstance(test, dict) or isinstance(test, list)), "incorrect input"
-
     if isinstance(test, dict):
         for value in test.values():
                 if isinstance(value, dict):
                     list_count(value)
                 else:
-                    assert isinstance(value, list), "incorrect input"
                     result.extend(value)
-                    # return (value)
         return (result)
     elif isinstance(test, list):
         return (test)
@@ -28,4 +24,4 @@ def list_count(test, result=[]):
 print(list_count(tree))
 print(list_count([1,2,3]))
 
-print(list_count(5))
+assert list_count([1,2,3]) == [1,2,3], "incorrect list count"
