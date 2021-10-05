@@ -18,7 +18,7 @@ def n_plus_1(n):
 
 def n_mines_1(n):
     result = n-1
-    print('n_mines_ result:', result)
+    print('n_mines_1 result:', result)
 
 plus1 = measure_elapsed_time(n_plus_1)
 mines1 = measure_elapsed_time(n_mines_1)
