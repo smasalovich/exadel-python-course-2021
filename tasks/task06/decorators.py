@@ -1,29 +1,37 @@
-import timeit
+import time
+import functools
 
 
 def measure_elapsed_time(func):
-    def wrapper(*args, **kwargs):
-        start = timeit.default_timer()
-        # t = timeit.timeit(lambda: func(*args, **kwargs))
-        func(*args, **kwargs)
-        end = timeit.default_timer()
+    @functools.wraps(func)
+    def wrapper_decorator(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
         t = end-start
-        print(f'{func.__name__} call took: {t:.6} sec')
+        print(f'{func.__name__} call took: {t:.1f} sec')
+        return result
+    return wrapper_decorator
 
-    return wrapper
+@measure_elapsed_time
+def my_fn1(arg1, arg2):
+   time.sleep(0.5)
+   return arg1 + arg2
 
-def n_plus_1(n):
-    result = n+1
-    print('n_plus_1 result:', result)
+ 
+@measure_elapsed_time
+def my_fn2():
+   time.sleep(0.8)
+   print("I do nothing! What a life")
+ 
+@measure_elapsed_time
+def my_fn3(arg1, **kwargs):
+   time.sleep(0.3)
+   print(f"I also do nothing, but I have arg1 = {arg1} and kwargs = {kwargs}")
 
-def n_mines_1(n):
-    result = n-1
-    print('n_mines_1 result:', result)
 
-plus1 = measure_elapsed_time(n_plus_1)
-mines1 = measure_elapsed_time(n_mines_1)
+print("my_fn1 result:", my_fn1(1, 2))
+my_fn2()
 
+my_fn3(12, kwarg1='lol', kwarg2='kek')
 
-
-plus1(5)
-mines1(5)
